@@ -1,6 +1,6 @@
 hosts = [
-  { name: 'vm-web',  box: 'centos/7', mem: 1024, cpu: 2, netint: 1 },
-  { name: 'vm-db',   box: 'centos/7', mem: 1024, cpu: 2, netint: 2 }
+  { name: 'vm-web', hostname: 'vm.web.local', box: 'centos/7', mem: 1024, cpu: 2, netint: 1 },
+  { name: 'vm-db', hostname: 'vm.db.local', box: 'centos/7', mem: 1024, cpu: 2, netint: 2 }
 
 
 ]
@@ -8,7 +8,7 @@ Vagrant.configure('2') do |config|
   hosts.each do |host|
     config.vm.define host[:name] do |node|
       node.vm.box = host[:box]
-      node.vm.hostname = host[:name]
+      node.vm.hostname = host[:hostname]
       node.vm.provider :virtualbox do |v|
         v.memory = host[:mem]
         v.cpus = host[:cpu]
