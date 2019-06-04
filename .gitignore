@@ -1,6 +1,6 @@
 *.rpm
 
-metadata.rb
+.delivery
 
 */.vagrant/
 
