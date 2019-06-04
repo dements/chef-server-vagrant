@@ -1,8 +1,8 @@
 property :conf_path, String, required: true
-property :filesource, String, required: true
-property :fileowner, String, required: true
-property :filegroup, String, required: true
-property :filemode, String, required: true
+property :template_source, String, required: true
+property :template_owner, String, default 'root'
+property :template_group, String, default 'root'
+property :fmode, String, default '0755'
 
 action :install do
   package 'httpd' do
@@ -10,10 +10,10 @@ action :install do
   end
 
   template new_resource.conf_path do
-    source new_resource.filesource
-    owner new_resource.fileowner
-    group new_resource.filegroup
-    mode new_resource.filemode
+    source new_resource.template_source
+    owner new_resource.template_owner
+    group new_resource.template_group
+    mode new_resource.fmode
     action :create
   end
 

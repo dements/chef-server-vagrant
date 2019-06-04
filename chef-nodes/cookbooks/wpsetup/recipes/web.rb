@@ -5,10 +5,7 @@ end
 
 libapache2_apache2 'apache' do
   conf_path '/etc/httpd/conf/httpd.conf'
-  filesource 'httpd.conf.erb'
-  fileowner 'root'
-  filegroup 'root'
-  filemode '0755'
+  template_source 'httpd.conf.erb'
   action :install
 end
 
