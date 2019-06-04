@@ -1,16 +1,14 @@
 property :mysql_repo, String, required: true
-property :filepath, String, required: true
-property :fileowner, String, required: true
-property :filegroup, String, required: true
+property :mysql_package, String, required: true
+property :pkgowner, String, required: true
 
 action :install do
   remote_file new_resource.filepath do
   	source new_resource.mysql_repo
-  	owner new_resource.fileowner
-  	group new_resource.filegroup
+  	owner new_resource.pkgowner
   end
 
-  yum_package new_resource.filepath do
+  yum_package new_resource.mysql_package do
     action :install
   end
 
