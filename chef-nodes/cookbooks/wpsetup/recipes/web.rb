@@ -1,3 +1,5 @@
+wpdbsetup = data_bag_item('wp-config-values', "wp_db_setup")
+
 execute 'update-upgrade' do
   command 'sudo yum update -y'
   action :run
@@ -22,11 +24,11 @@ template '/var/www/html/wp-config.php' do
   owner 'apache'
   group 'apache'
   variables(
-    db_name: 'wpdb',
-    db_user: 'wpadmin',
-    db_password: 'wordpress123',
-    db_host: '10.128.236.152',
-    db_charset: 'utf8',
+    db_name: wpdbsetup['name'],
+    db_user: wpdbsetup['user'],
+    db_password: wpdbsetup['password'],
+    db_host: wpdbsetup['host'],
+    db_charset: wpdbsetup['charset'],
   )
   action :create
 end

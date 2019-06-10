@@ -1,8 +1,8 @@
 property :conf_path, String, required: true
 property :template_source, String, required: true
-property :template_owner, String, default 'root'
-property :template_group, String, default 'root'
-property :fmode, String, default '0755'
+property :template_owner, String, default: 'root'
+property :template_group, String, default: 'root'
+property :fmode, String, default: '0755'
 
 action :install do
   package 'httpd' do
